@@ -19,3 +19,7 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# Anki add-on packages
+*.ankiaddon
+
