@@ -28,6 +28,18 @@ This project is an enhanced fork of the original work by community developers:
 
 ---
 
+## Screenshots
+
+| Fast Cropping Modal | Floating Popover & Menu Integration |
+| :---: | :---: |
+| ![Fast Cropping Modal](https://raw.githubusercontent.com/Ficello/Anki-Image-Editor-Enhanced-Edition-/main/screenshots/01_cropper_modal.png) | ![Floating Popover Integration](https://raw.githubusercontent.com/Ficello/Anki-Image-Editor-Enhanced-Edition-/main/screenshots/02_editor_popover.png) |
+
+| Vector Annotations & Drawings |
+| :---: |
+| ![Vector Annotations](https://raw.githubusercontent.com/Ficello/Anki-Image-Editor-Enhanced-Edition-/main/screenshots/03_vector_annotations.png) |
+
+---
+
 ## How to Use
 
 ### 1. Fast Cropping
