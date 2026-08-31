@@ -1,0 +1,115 @@
+/* Crop Tool Styling for Method Draw */
+#tool_crop {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+#tool_crop svg {
+  pointer-events: none;
+}
+
+#tool_crop.tool_button_current {
+  background-color: #3b82f6 !important;
+}
+
+#crop_panel {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+}
+
+.btn_crop_action {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn_crop_action.primary {
+  background: #10b981;
+  color: #fff;
+}
+
+.btn_crop_action.primary:hover {
+  background: #059669;
+}
+
+.btn_crop_action.secondary {
+  background: #444;
+  color: #eee;
+  border: 1px solid #666;
+}
+
+.btn_crop_action.secondary:hover {
+  background: #555;
+}
+
+/* Crop Overlay */
+#crop_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.crop-backdrop {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: auto;
+}
+
+#crop_box {
+  position: absolute;
+  border: 2px dashed #3b82f6;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+  cursor: move;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+/* Rule of thirds grid */
+.crop-grid-h, .crop-grid-v {
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.crop-grid-h {
+  left: 0;
+  right: 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.35);
+}
+.crop-grid-v {
+  top: 0;
+  bottom: 0;
+  border-left: 1px dashed rgba(255, 255, 255, 0.35);
+}
+
+/* Handles */
+.crop-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border: 1.5px solid #3b82f6;
+  border-radius: 2px;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+.crop-handle.handle-nw { top: -5px; left: -5px; cursor: nwse-resize; }
+.crop-handle.handle-n  { top: -5px; left: calc(50% - 5px); cursor: ns-resize; }
+.crop-handle.handle-ne { top: -5px; right: -5px; cursor: nesw-resize; }
+.crop-handle.handle-e  { top: calc(50% - 5px); right: -5px; cursor: ew-resize; }
+.crop-handle.handle-se { bottom: -5px; right: -5px; cursor: nwse-resize; }
+.crop-handle.handle-s  { bottom: -5px; left: calc(50% - 5px); cursor: ns-resize; }
+.crop-handle.handle-sw { bottom: -5px; left: -5px; cursor: nesw-resize; }
+.crop-handle.handle-w  { top: calc(50% - 5px); left: -5px; cursor: ew-resize; }
