@@ -144,16 +144,6 @@
       field.addEventListener("contextmenu", onImageEvent);
       field.addEventListener("click", onImageEvent);
       field.addEventListener("mousedown", onImageEvent);
-
-      // Double-click on any image opens the fast Cropper / Editor
-      field.addEventListener("dblclick", function (e) {
-        if (e.target && e.target.tagName === "IMG") {
-          updateTargetImage(e.target, field);
-          e.preventDefault();
-          e.stopPropagation();
-          addonAnno.openCropperForImage(e.target);
-        }
-      });
     }
 
     startPopoverObserver();
