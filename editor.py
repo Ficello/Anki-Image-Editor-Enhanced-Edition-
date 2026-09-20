@@ -23,6 +23,9 @@ import anki
 from anki.hooks import addHook
 from aqt import mw
 from aqt.editor import EditorWebView, Editor
+import aqt.editor
+EDITOR_CLASSES = (Editor, getattr(aqt.editor, "NewEditor", Editor))
+WEBVIEW_CLASSES = (EditorWebView, getattr(aqt.editor, "NewEditorWebView", EditorWebView))
 from aqt.utils import tooltip
 from aqt.qt import QMenu, QT_VERSION_STR
 from aqt import gui_hooks
@@ -106,13 +109,13 @@ def handle_webview_message(handled: tuple[bool, Any], message: str, context: Any
         image_path = Path(mw.col.media.dir()) / image_name if not is_external and image_name else None
         
         editor = None
-        if isinstance(context, Editor):
+        if isinstance(context, EDITOR_CLASSES):
             editor = context
-        elif isinstance(context, EditorWebView):
-            editor = context.editor
+        elif isinstance(context, WEBVIEW_CLASSES):
+            editor = getattr(context, "editor", None)
         elif hasattr(mw, "app"):
             for widget in mw.app.topLevelWidgets():
-                if hasattr(widget, "editor") and isinstance(widget.editor, Editor):
+                if hasattr(widget, "editor") and isinstance(widget.editor, EDITOR_CLASSES):
                     editor = widget.editor
                     break
 
@@ -135,7 +138,7 @@ def handle_webview_message(handled: tuple[bool, Any], message: str, context: Any
 
 
 def insert_js(web_content: "WebContent", context):
-    if not isinstance(context, Editor):
+    if not isinstance(context, EDITOR_CLASSES):
         return
     web_content.js.append(f"/_addons/{ADDON_PACKAGE}/web/editor.js")
 
