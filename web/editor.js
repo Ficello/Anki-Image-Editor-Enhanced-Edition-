@@ -202,12 +202,20 @@
             img.setAttribute("src", newName);
             img.src = newName;
             replaced = true;
+            try {
+              img.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+              field.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+            } catch(e) {}
           }
         } else {
           if (img === targetImage() || (!replaced && (currentSrc === oldSrc || img.src === oldSrc))) {
             img.setAttribute("src", newName);
             img.src = newName;
             replaced = true;
+            try {
+              img.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+              field.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+            } catch(e) {}
             break;
           }
         }
@@ -226,6 +234,10 @@
         if ((img.getAttribute("src") || img.src) === oldSrc) {
           img.setAttribute("src", newSrc);
           img.src = newSrc;
+          try {
+            img.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+            field.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+          } catch(e) {}
         }
       }
     }
@@ -237,6 +249,12 @@
     if (img) {
       img.setAttribute("src", decoded);
       img.src = decoded;
+      try {
+        img.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+        if (targetField) {
+          targetField.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+        }
+      } catch(e) {}
     }
   };
 

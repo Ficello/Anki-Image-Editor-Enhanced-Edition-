@@ -227,8 +227,15 @@ class CropDialog(QDialog):
         self.editor_wv.eval(js_code)
 
         # 2. If replace_all is selected and not in addMode, replace across notes in database
-        if replace_all and not self.editor.addMode:
-            self.editor.saveNow(lambda s=self, o=old_src, n=new_name: s.replace_across_collection(o, n))
+        is_add_mode = getattr(self.editor, "addMode", False)
+        if replace_all and not is_add_mode:
+            cb = lambda s=self, o=old_src, n=new_name: s.replace_across_collection(o, n)
+            if hasattr(self.editor, "call_after_note_saved"):
+                self.editor.call_after_note_saved(cb)
+            elif hasattr(self.editor, "saveNow"):
+                self.editor.saveNow(cb)
+            else:
+                cb()
 
     def replace_across_collection(self, orig_src: str, new_name: str):
         # Escape special regex characters in orig_src

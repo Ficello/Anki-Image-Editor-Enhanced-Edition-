@@ -253,12 +253,18 @@ class AnnotateDialog(QDialog):
                 desired_name, svg_str.encode("utf-8"))
 
         if self.replaceAll.checkState() == Qt.CheckState.Checked:
-            if self.editor.addMode:
+            is_add_mode = getattr(self.editor, "addMode", False)
+            if is_add_mode:
                 self.replace_img_src_webview(new_name, replace_all=True)
                 self.replace_all_img_src(img_name, new_name)
             else:
-                self.editor.saveNow(lambda s=self, i=img_name,
-                                n=new_name: s.replace_all_img_src(i, n))
+                cb = lambda s=self, i=img_name, n=new_name: s.replace_all_img_src(i, n)
+                if hasattr(self.editor, "call_after_note_saved"):
+                    self.editor.call_after_note_saved(cb)
+                elif hasattr(self.editor, "saveNow"):
+                    self.editor.saveNow(cb)
+                else:
+                    cb()
         else:
             self.replace_img_src_webview(new_name)
             tooltip(tr("save_success"), parent=self.editor.widget)
