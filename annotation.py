@@ -30,7 +30,6 @@ from aqt.browser import Browser
 from . import COMPAT
 from .utils import get_config, set_config, checked
 from .i18n import tr
-from .shige_config.shige_buttons import add_shige_buttons
 
 method_draw_path = os.path.join(
     os.path.dirname(__file__), "web", "Method-Draw", "editor", "index.html"
@@ -91,7 +90,6 @@ class AnnotateDialog(QDialog):
         mainLayout.addWidget(self.web, stretch=1)
 
         btnLayout = QHBoxLayout()
-        add_shige_buttons(btnLayout)
         btnLayout.addStretch(1)
 
         replaceAll = QCheckBox(tr("chk_replace_all"))
@@ -312,7 +310,7 @@ class AnnotateDialog(QDialog):
 
         n = mw.col.findNotes("<img")
 
-        reg1 = r"""(?P<first><img[^>]* src=)(?:"{name}")|(?:'{name}')(?P<second>[^>]*>)""".format(
+        reg1 = r"""(?P<first><img[^>]* src=)(?:"{name}"|'{name}')(?P<second>[^>]*>)""".format(
             name=orig_name
         )
         reg2 = r"""(?P<first><img[^>]* src=){name}(?P<second>(?: [^>]*>)|>)""".format(

@@ -15,9 +15,6 @@
 
 from anki.utils import pointVersion
 
-from .shige_config.popup_config import set_gui_hook_change_log
-set_gui_hook_change_log()
-
 # from anki import version
 # assert version.startswith("2.1.")
 # minor_ver = int(version.split(".")[-1])
