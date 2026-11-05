@@ -154,7 +154,20 @@ def on_toolbar_button_clicked(editor: Editor):
 
 
 def setup_editor_buttons(btns, editor: "Editor"):
-    hotkey = "Ctrl + Shift + I"
+    hotkey = "Ctrl+Shift+I"
+    broker = getattr(mw, "shortcut_broker", None)
+    if broker and hasattr(broker, "claim"):
+        try:
+            hotkey = broker.claim(
+                action_id="image_editor.edit",
+                label=tr("toolbar_tooltip"),
+                scope="editor",
+                preferred=["Ctrl+Shift+I", "Ctrl+Alt+I", "F10"],
+                addon_id="789309990",
+                addon_name="Image Editor"
+            )
+        except Exception:
+            pass
     icon = os.path.join(ICONS_PATH, "draw.svg")
     b = editor.addButton(icon, "Image Editor",
                          lambda o=editor: on_toolbar_button_clicked(o),

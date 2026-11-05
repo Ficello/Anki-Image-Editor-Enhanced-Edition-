@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Ficello/Anki-Customize-Keyboard-Shortcuts/main/schemas/shortcuts-v1.json",
+  "schema_version": 1,
+  "addon_name": "Image Editor Enhanced Edition",
+  "shortcuts": [
+    {
+      "id": "image_editor.edit",
+      "label": "Editer l'image (Image Editor)",
+      "scope": "editor",
+      "default": "Ctrl+Shift+I",
+      "fallbacks": ["Ctrl+Alt+I", "F10"]
+    }
+  ]
+}
