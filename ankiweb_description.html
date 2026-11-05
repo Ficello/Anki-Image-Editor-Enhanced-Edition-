@@ -1,16 +1,22 @@
-<h1>Image Editor (Enhanced Edition) - Fast Crop, Annotate & Draw</h1>
+<h1>Image Editor Enhanced — Fast Crop, Annotate & Medical Image Tools</h1>
 
-<p>An advanced, high-performance image editing and cropping add-on for Anki. Crop, rotate, flip, annotate, and edit images directly within the Note Editor in seconds without interrupting your review or card creation workflow.</p>
+<p>An advanced, high-performance image editing, cropping, and annotation add-on for Anki. Crop, rotate, straighten, redact, annotate, and invert medical illustrations directly within the Note Editor in seconds without interrupting your review or card creation workflow.</p>
 
 <hr>
 
 <h2>Key Enhancements vs Original Add-on (789309990)</h2>
 <ul>
   <li><b>Built-in Fast Cropper</b>: Instant cropping dialog with aspect ratio presets (Free, 1:1, 4:3, 16:9, 3:2), lossless rotations (-90° / +90°), horizontal and vertical flips, live dimensions badge, and zoom controls.</li>
+  <li><b>In-Place Medical Redaction & Blackout</b>: Instant blackout tool directly on the cropper to mask patient names, confidential data, or identifiers without opening external tools.</li>
+  <li><b>Quick In-Place Annotations</b>: Draw pointer arrows, focus frames, and semi-transparent highlighters directly onto the cropper canvas.</li>
+  <li><b>Fine Tilt / Straighten Slider</b>: Precision rotation slider (-45° to +45°) to straighten crooked book photos, scans, and ECG tracings.</li>
+  <li><b>Medical Image Filters</b>: One-click Invert (Negative) filter for X-rays and CT scans, plus High Contrast and Grayscale modes.</li>
+  <li><b>Lossless Full Editor Transition</b>: Cropped regions and in-place annotations are preserved and carried directly into Method-Draw when switching to vector editing.</li>
   <li><b>Floating Bubble Menu Integration</b>: Injects an Image Editor action button directly into Anki's floating image popover.</li>
-  <li><b>Full Internationalization (i18n)</b>: Native translation into <b>over 40 Anki languages</b> (French, German, Spanish, Japanese, Chinese, Russian, Italian, Portuguese, Arabic, Korean, and many more) with automatic locale detection.</li>
-  <li><b>Robust UTF-8 Handling</b>: Full compatibility with international and non-ASCII filenames.</li>
-  <li><b>Minimalist & Sober Design</b>: Clean, modern interface without distractions or emojis.</li>
+  <li><b>Native Settings Dialog & config.md</b>: Dedicated Qt configuration interface and comprehensive Markdown help pane.</li>
+  <li><b>Full Internationalization (i18n)</b>: Native translation into <b>over 40 Anki languages</b> with automatic locale detection.</li>
+  <li><b>Robust UTF-8 Handling</b>: Full compatibility with accented and international filenames.</li>
+  <li><b>Minimalist & Sober Design</b>: Clean, clinical-grade interface following strict design principles (zero emojis).</li>
 </ul>
 
 <hr>
@@ -29,7 +35,16 @@
   <li><b>Floating Toolbar</b>: Select an image and click the Image Editor icon in the floating bubble toolbar.</li>
   <li><b>Context Menu</b>: Right-click any image and choose <i>Image Editor (Crop / Edit)</i>.</li>
   <li><b>Toolbar Button / Shortcut</b>: Press <code>Ctrl + Shift + I</code> to edit the selected image, or open a blank canvas to create a new vector drawing from scratch.</li>
-  <li><b>Switch to Full Vector Editor</b>: From the Cropper, click <i>Full Editor (Shapes / Text)</i> to add arrows, text labels, shapes, and freehand drawings.</li>
+  <li><b>Fast Crop & Annotation Tools</b>:
+    <ul>
+      <li>Select a ratio preset or adjust the crop boundaries.</li>
+      <li>Use the <b>Redact</b> tool (<code>B</code>) to black out confidential information.</li>
+      <li>Use the <b>Arrow</b> (<code>A</code>), <b>Frame</b>, or <b>Highlight</b> tools for quick visual cues.</li>
+      <li>Adjust the <b>Tilt slider</b> to straighten misaligned images.</li>
+      <li>Toggle <b>Invert</b> (<code>I</code>) to examine radiographic negative images.</li>
+    </ul>
+  </li>
+  <li><b>Switch to Full Vector Editor</b>: Click <i>Full Editor</i> to carry over your crop and annotations into Method-Draw for complex shapes and text labels.</li>
 </ol>
 
 <hr>
@@ -37,8 +52,16 @@
 <h2>Keyboard Shortcuts</h2>
 <ul>
   <li><code>Ctrl + Shift + I</code>: Open Image Editor on selected image (or open blank drawing).</li>
-  <li><code>Enter</code>: Save and apply crop.</li>
+  <li><code>Enter</code>: Save and apply changes.</li>
   <li><code>Esc</code>: Cancel and close dialog.</li>
+  <li><code>Ctrl + Z</code>: Undo last drawn annotation.</li>
+  <li><code>C</code>: Crop tool.</li>
+  <li><code>B</code>: Redaction / Blackout tool.</li>
+  <li><code>A</code>: Pointer arrow tool.</li>
+  <li><code>I</code>: Invert colors (Negative / X-ray).</li>
+  <li><code>R</code> / <code>L</code>: Rotate right / left (+90° / -90°).</li>
+  <li><code>H</code> / <code>V</code>: Flip horizontal / vertical.</li>
+  <li><code>1</code> to <code>5</code>: Ratio presets (Free, 1:1, 4:3, 16:9, 3:2).</li>
 </ul>
 
 <hr>
@@ -48,14 +71,14 @@
 <ul>
   <li>Original author: <b>BlueGreenMagick</b> (<a href="https://github.com/BlueGreenMagick">GitHub</a>)</li>
   <li>Upstream maintainer: <b>Shigeyuki (Shige)</b> (<a href="https://ankiweb.net/shared/info/789309990">AnkiWeb 789309990</a> / <a href="http://patreon.com/Shigeyuki">Patreon</a>)</li>
-  <li>Source code & Issue tracker: <a href="https://github.com/Ficello/Anki-Image-Editor-Enhanced-Edition-">GitHub Repository</a></li>
+  <li>Source code: <a href="https://github.com/Ficello/Anki-Image-Editor-Enhanced-Edition-">GitHub Repository</a></li>
 </ul>
 
 <hr>
 
 <h2>Compatibility</h2>
 <ul>
-  <li>Anki 2.1.20 up to the latest Anki 23.x / 24.x / 25.x+</li>
+  <li>Anki 2.1.20 up to Anki 23.x / 24.x / 25.x+</li>
   <li>Full Qt5 and Qt6 support</li>
   <li>Windows, macOS, and Linux</li>
 </ul>

@@ -1,5 +1,7 @@
 {
-    "_hidden": {
-        "replaceAll": false
-    }
+  "replace_all": false,
+  "default_ratio": "free",
+  "export_quality": 95,
+  "default_filter": "none",
+  "shortcut_editor": "Ctrl+Shift+I"
 }

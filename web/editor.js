@@ -133,7 +133,8 @@
   addonAnno.addListener = async function () {
     const fields = await getFieldElements();
     for (const field of fields) {
-      if (!field) continue;
+      if (!field || field.dataset.annoBound) continue;
+      field.dataset.annoBound = "true";
 
       const onImageEvent = function (e) {
         if (e.target && e.target.tagName === "IMG") {
@@ -144,6 +145,20 @@
       field.addEventListener("contextmenu", onImageEvent);
       field.addEventListener("click", onImageEvent);
       field.addEventListener("mousedown", onImageEvent);
+
+      // Mirror keyboard shortcut inside ProseMirror contenteditable
+      field.addEventListener("keydown", function (e) {
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "I" || e.key === "i")) {
+          e.preventDefault();
+          e.stopPropagation();
+          const src = addonAnno.getSelectedImageSrc();
+          if (src) {
+            addonAnno.openCropperForImage();
+          } else {
+            addonAnno.openFullEditorForImage();
+          }
+        }
+      });
     }
 
     startPopoverObserver();
@@ -307,19 +322,18 @@
     const isPopupContainer = el.matches(".popover, .bubble-menu, [role='tooltip'], [role='dialog'], .tippy-content, .tippy-box, .editor-popover, [data-popover], [data-tippy-root]") ||
                             el.closest(".popover, .bubble-menu, [role='tooltip'], [role='dialog'], .tippy-content, .tippy-box, .editor-popover, [data-popover], [data-tippy-root]");
     
-    if (!isPopupContainer) {
-      try {
-        const style = window.getComputedStyle(el);
-        if (style.position !== "absolute" && style.position !== "fixed") {
-          return false;
-        }
-      } catch (e) {
-        return false;
-      }
-    }
+    if (!isPopupContainer) return false;
+
+    // Confirm that an image is actively selected before adding image editing button
+    const hasActiveImage = !!(
+      (targetEl && targetEl.tagName === "IMG") ||
+      document.querySelector("img.ProseMirror-selectednode") ||
+      el.querySelector("img")
+    );
+    if (!hasActiveImage) return false;
 
     const buttons = el.querySelectorAll("button");
-    return buttons.length >= 2;
+    return buttons.length >= 1;
   }
 
   function checkAndInjectButtons(root) {
@@ -351,23 +365,30 @@
   }
 
   let observerStarted = false;
+  let observerTimeout = null;
   function startPopoverObserver() {
     if (observerStarted) return;
     observerStarted = true;
 
     const observer = new MutationObserver((mutations) => {
+      let hasRelevantAddedNodes = false;
       for (const mutation of mutations) {
-        if (mutation.addedNodes.length) {
-          checkAndInjectButtons(document.body);
-          for (const node of mutation.addedNodes) {
-            if (node.nodeType === 1) {
-              checkAndInjectButtons(node);
-              if (node.shadowRoot) {
-                checkAndInjectButtons(node.shadowRoot);
-              }
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType === 1) {
+            if (node.matches && (node.matches(".popover, .bubble-menu, [data-tippy-root], .tippy-box, [role='tooltip']") || node.querySelector(".popover, .bubble-menu, [data-tippy-root], .tippy-box"))) {
+              hasRelevantAddedNodes = true;
+              break;
             }
           }
         }
+        if (hasRelevantAddedNodes) break;
+      }
+
+      if (hasRelevantAddedNodes) {
+        if (observerTimeout) clearTimeout(observerTimeout);
+        observerTimeout = setTimeout(() => {
+          checkAndInjectButtons(document.body);
+        }, 30);
       }
     });
 

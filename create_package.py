@@ -17,7 +17,9 @@ EXCLUDES = [
     ".idea",
     ".ankiaddon",
     ".log",
-    "_memo.md"
+    "_memo.md",
+    "shige_config",
+    "screenshots"
 ]
 
 def should_exclude(rel_path):

@@ -44,8 +44,8 @@
       cropPanel.className = "context_panel";
       cropPanel.innerHTML = `
         <h4 style="color:#eee; margin:0; font-size:13px; font-weight:600;">Rogner</h4>
-        <button id="btn_apply_crop" class="btn_crop_action primary" title="Appliquer le rognage (Entrée)">✓ Appliquer (Entrée)</button>
-        <button id="btn_reset_crop" class="btn_crop_action secondary" title="Tout sélectionner">✕ Tout sélectionner</button>
+        <button id="btn_apply_crop" class="btn_crop_action primary" title="Appliquer le rognage (Entrée)">Appliquer (Entrée)</button>
+        <button id="btn_reset_crop" class="btn_crop_action secondary" title="Tout sélectionner">Tout sélectionner</button>
         <label style="display:inline-flex; align-items:center; gap:4px; font-size:12px; color:#ccc; margin-left:8px;">
           Ratio:
           <select id="crop_ratio_select" style="background:#222; color:#fff; border:1px solid #555; padding:2px 6px; border-radius:4px; font-size:12px;">
@@ -334,15 +334,16 @@
   }
 
   // --- Anki Bridge Integration ---
-  window.ankiAddonSetImg = function (data, type) {
+  window.ankiAddonSetImg = function (data, type, skipCrop) {
     setupCropUI();
 
     if (type === "svg") {
       methodDraw.loadFromString(data);
-      // Natively activate crop tool by default on load
-      setTimeout(() => {
-        enableCropMode();
-      }, 200);
+      if (!skipCrop) {
+        setTimeout(() => {
+          enableCropMode();
+        }, 200);
+      }
     } else {
       const setImage = function (img_width, img_height) {
         svgCanvas.setResolution(img_width, img_height);
@@ -367,10 +368,11 @@
         svgCanvas.clearSelection();
         methodDraw.updateCanvas();
 
-        // Natively select and activate the Crop Tool by default on image open!
-        setTimeout(() => {
-          enableCropMode();
-        }, 150);
+        if (!skipCrop) {
+          setTimeout(() => {
+            enableCropMode();
+          }, 150);
+        }
       };
 
       const img = new Image();
