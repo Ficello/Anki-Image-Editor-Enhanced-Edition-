@@ -1,113 +1,72 @@
-# Anki Image Editor (Enhanced Edition)
+# Image Editor (Enhanced Edition) - Fast Crop, Annotate & Draw
 
-An advanced image editing, cropping, and annotation add-on for Anki. It allows you to quickly crop, rotate, flip, annotate, and edit images directly within the Anki Note Editor without leaving your study workflow.
-
----
-
-## Credits & Attribution
-
-This project is an enhanced fork of the original work by community developers:
-- **Original Author**: BlueGreenMagick ([GitHub Repository](https://github.com/BlueGreenMagick))
-- **Upstream Fixes & Maintenance**: Shigeyuki ([AnkiWeb Add-on #789309990](https://ankiweb.net/shared/info/789309990) / [Patreon](http://patreon.com/Shigeyuki))
-- **Enhanced Edition**: Developed with modern cropping tools, multi-language internationalization (i18n), floating popover integration, remote image handling, and performance optimizations.
+An advanced, high-performance image editing and cropping add-on for Anki. Crop, rotate, flip, annotate, and edit images directly within the Note Editor in seconds without interrupting your review or card creation workflow.
 
 ---
 
-## Comparison: Enhancements vs Original Add-on
+## Key Enhancements vs Original Add-on (789309990)
 
-| Feature | Original / Upstream (789309990) | Enhanced Edition |
+| Feature | Original Upstream (789309990) | Enhanced Edition |
 | :--- | :--- | :--- |
-| **Instant Cropper Tool** | Not available (only full SVG vector canvas) | **Built-in fast cropper** with aspect ratio presets (1:1, 4:3, 16:9, 3:2, Free), rotations (-90°/+90°), horizontal/vertical flips, and zoom controls |
-| **Floating Popover Button** | Not supported | **Automatic quick-action button** injected into Anki's floating image bubble menu |
-| **Internationalization (i18n)**| English only | **Full localization across 40+ Anki languages** (French, German, Spanish, Japanese, Chinese, Russian, Italian, Portuguese, Arabic, Korean, etc.) |
-| **UTF-8 & Non-ASCII Filenames**| Risk of corrupted paths on special characters | **Robust TextDecoder UTF-8 parsing** for international filenames |
+| **Instant Cropper Tool** | Not available (only full SVG canvas) | **Built-in fast cropper** with aspect ratio presets (Free, 1:1, 4:3, 16:9, 3:2), lossless rotations (-90° / +90°), horizontal/vertical flips, and zoom |
+| **Floating Bubble Integration** | Not supported | **Automatic quick-action button** injected directly into Anki's floating image popover |
+| **Internationalization (i18n)** | English only | **Native translation into over 40 Anki languages** with automatic locale detection |
+| **UTF-8 Handling** | Path corruption risk on accented characters | **Robust TextDecoder UTF-8 parsing** for international filenames |
+| **Design & Ergonomics** | Cluttered dialogs | **Clean, distraction-free minimalist interface** (zero emojis) |
 
 ---
 
 ## Screenshot
 
-![Fast Cropping Modal](https://raw.githubusercontent.com/Ficello/Anki-Image-Editor-Enhanced-Edition-/main/screenshots/01_cropper_modal.png)
+![Fast Cropper Interface](https://raw.githubusercontent.com/Ficello/Anki-Image-Editor-Enhanced-Edition-/main/screenshots/01_cropper_modal.png)
 
 ---
 
 ## How to Use
 
-### 1. Fast Cropping
-- Click the **Image Editor** button on the floating image bubble popover.
-- Adjust your crop area, select an aspect ratio preset, or use rotation/flip buttons.
-- Press `Enter` or click **Save** to update the image in your card.
-
-### 2. Full Vector Drawing & Annotation
-- From the Cropper window, click **Full Editor (Shapes / Text)** to switch to the vector editor.
-- Add arrows, shapes, text boxes, freehand drawings, or highlights on top of your image.
-- Click **Save** to replace the image with the annotated SVG version.
-
-### 3. Creating a New Drawing from Scratch
-- With no image selected, click the **Image Editor** toolbar button or press `Ctrl + Shift + I`.
-- Draw your diagram or illustration and click **Save** to insert it directly into your current field.
+1. **Floating Toolbar** : Select an image and click the Image Editor icon in the floating bubble toolbar.
+2. **Context Menu** : Right-click any image and choose *Image Editor (Crop / Edit)*.
+3. **Toolbar Button / Shortcut** : Press `Ctrl + Shift + I` to edit the selected image, or open a blank canvas to create a new vector drawing from scratch.
+4. **Switch to Full Vector Editor** : From the Cropper, click *Full Editor (Shapes / Text)* to add arrows, text labels, shapes, and freehand drawings.
 
 ---
 
 ## Keyboard Shortcuts
 
-- `Ctrl + Shift + I`: Open Image Editor on selected image, or open a blank canvas if nothing is selected.
-- `Enter` (in Cropper): Save the cropped image.
-- `Esc` (in Cropper): Cancel and close dialog.
+| Shortcut | Context | Action |
+| :--- | :--- | :--- |
+| `Ctrl + Shift + I` | Editor | Open Image Editor on selected image (or create blank drawing) |
+| `Enter` | Cropper Modal | Save and apply crop |
+| `Esc` | Cropper Modal | Cancel and close dialog |
 
 ---
 
-## Supported Languages
+## Installation
 
-The add-on automatically detects your Anki language setting and provides native translations for:
-- Arabic (`ar`)
-- Bulgarian (`bg`)
-- Catalan (`ca`)
-- Czech (`cs`)
-- Danish (`da`)
-- Dutch (`nl`)
-- English (`en`)
-- Esperanto (`eo`)
-- Estonian (`et`)
-- Basque (`eu`)
-- Persian (`fa`)
-- Finnish (`fi`)
-- French (`fr`)
-- German (`de`)
-- Greek (`el`)
-- Hebrew (`he`)
-- Croatian (`hr`)
-- Hungarian (`hu`)
-- Indonesian (`id`)
-- Italian (`it`)
-- Japanese (`ja`)
-- Korean (`ko`)
-- Malay (`ms`)
-- Norwegian (`nb_NO`)
-- Polish (`pl`)
-- Portuguese / Brazil (`pt_BR`, `pt_PT`)
-- Romanian (`ro`)
-- Russian (`ru`)
-- Slovak (`sk`)
-- Slovenian (`sl`)
-- Spanish (`es`)
-- Serbian (`sr`)
-- Swedish (`sv`)
-- Thai (`th`)
-- Turkish (`tr`)
-- Ukrainian (`uk`)
-- Vietnamese (`vi`)
-- Chinese Simplified & Traditional (`zh_CN`, `zh_TW`)
+### Via AnkiWeb (Recommended)
+1. In Anki, go to **Tools > Add-ons > Get Add-ons...**
+2. Enter the Add-on Code: **789309990** (or enhanced edition code: **1177622942**)
+3. Restart Anki.
+
+### Manual Installation (.ankiaddon)
+1. Download the `.ankiaddon` package from GitHub releases.
+2. In Anki, go to **Tools > Add-ons > Install from file...**
+3. Select the file and restart Anki.
+
+---
+
+## Credits & Attribution
+
+This add-on is an enhanced edition building upon the contributions of the Anki open-source community:
+- Original author: **BlueGreenMagick** ([GitHub](https://github.com/BlueGreenMagick))
+- Upstream maintainer: **Shigeyuki (Shige)** ([AnkiWeb 789309990](https://ankiweb.net/shared/info/789309990) / [Patreon](http://patreon.com/Shigeyuki))
+- Enhanced edition & maintenance: **Ficello** ([GitHub Repository](https://github.com/Ficello/Anki-Image-Editor-Enhanced-Edition-))
+- License: GNU Affero General Public License (AGPLv3)
 
 ---
 
 ## Compatibility
 
-- Anki 2.1.20 through Anki 23.x / 24.x / 25.x+
-- Compatible with both Qt5 and Qt6 builds
-- Tested on Windows, macOS, and Linux
-
----
-
-## License
-
-This program is free software: you can redistribute it and/or modify it under the terms of the **GNU Affero General Public License (AGPLv3)** as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+- Anki 2.1.20 up to Anki 23.x / 24.x / 25.x+
+- Full Qt5 and Qt6 support
+- Windows, macOS, and Linux
